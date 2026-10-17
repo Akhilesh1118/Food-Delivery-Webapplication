@@ -12,7 +12,6 @@ A full-stack, production-ready Point of Sale (POS) and Order Management System d
 - [Business Rules & Validation](#-business-rules--validation)
 - [Demo Credentials](#-demo-credentials)
 - [Installation & Getting Started](#-installation--getting-started)
-- [Testing & Quality Assurance](#-testing--quality-assurance)
 
 ---
 
@@ -166,42 +165,7 @@ npm start
 
 ---
 
-## 🧪 Testing & Quality Assurance
 
-The codebase includes an automated end-to-end integration and RBAC test suite verifying all 16 requirement categories:
-
-```bash
-node backend/test_roles_and_pos.js
-```
-
-### Test Suite Output:
-```text
---- STARTING TOMATO COMPREHENSIVE INTEGRATION & RBAC TEST SUITE ---
-[1] Testing Public Registration Security...
-✅ PASS: Customer registered successfully
-✅ PASS: Public registration strictly enforced "customer" role, ignoring requested "admin" role
-[2] Testing Staff Login...
-✅ PASS: Staff logged in successfully
-✅ PASS: Staff user verified with role "staff"
-[3] Testing Admin Login...
-✅ PASS: Admin logged in successfully
-✅ PASS: Admin user verified with role "admin"
-[4] Testing RBAC on Menu Administration...
-✅ PASS: Customer blocked from menu creation with 403 Forbidden
-✅ PASS: Staff blocked from menu creation with 403 Forbidden
-✅ PASS: Admin successfully authorized to create menu item
-[5] Testing RBAC on POS Order Creation...
-✅ PASS: Customer blocked from staff POS with 403 Forbidden
-✅ PASS: Staff authorized to create POS order
-✅ PASS: Server correctly calculated subtotal: 240
-✅ PASS: Server correctly calculated 5% tax: 12
-✅ PASS: Server correctly applied discount: 20
-✅ PASS: Server correctly validated final total: 232
-...
-========================================
-TEST SUMMARY: 58 PASSED, 0 FAILED
-========================================
-```
 
 ---
 

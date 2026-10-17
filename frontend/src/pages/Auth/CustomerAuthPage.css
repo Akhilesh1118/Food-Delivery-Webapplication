@@ -1,0 +1,125 @@
+.customer-auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+  padding: 40px 20px;
+}
+
+.customer-auth-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  width: 100%;
+  max-width: 420px;
+  padding: 32px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+}
+
+.customer-auth-card h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 6px 0;
+}
+
+.customer-auth-subtitle {
+  font-size: 13px;
+  color: #64748b;
+  margin: 0 0 20px 0;
+  line-height: 1.4;
+}
+
+.customer-auth-error {
+  background: #fef2f2;
+  color: #dc2626;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  margin-bottom: 16px;
+  border: 1px solid #fee2e2;
+}
+
+.customer-auth-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 16px;
+}
+
+.customer-auth-group label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #475569;
+}
+
+.customer-auth-group input {
+  padding: 10px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.customer-auth-group input:focus {
+  border-color: #ff6347;
+  box-shadow: 0 0 0 3px rgba(255, 99, 71, 0.15);
+}
+
+.customer-auth-submit {
+  width: 100%;
+  padding: 11px;
+  border: none;
+  border-radius: 8px;
+  background: #ff6347;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 6px;
+}
+
+.customer-auth-submit:hover:not(:disabled) {
+  background: #e04f35;
+}
+
+.customer-auth-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.customer-auth-toggle {
+  text-align: center;
+  margin-top: 18px;
+  font-size: 13px;
+  color: #64748b;
+}
+
+.customer-auth-toggle span {
+  color: #ff6347;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.customer-portal-links {
+  margin-top: 24px;
+  padding-top: 14px;
+  border-top: 1px solid #f1f5f9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+.customer-portal-links a {
+  color: #64748b;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.customer-portal-links a:hover {
+  color: #ff6347;
+}

@@ -1,0 +1,9 @@
+node_modules
+**/node_modules
+frontend/dist
+admin/dist
+.git
+.env
+.env.*
+bun.lock
+npm-debug.log*

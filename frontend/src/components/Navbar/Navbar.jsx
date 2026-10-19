@@ -4,7 +4,7 @@ import { assets } from '../../assets/assets';
 import { Link, useNavigate } from 'react-router-dom';
 import { StoreContext } from '../../context/StoreContext';
 
-const Navbar = ({ setShowLogin }) => {
+const Navbar = () => {
   const [menu, setMenu] = useState("home");
   const { getTotalCartAmount, token, setToken, food_list, addToCart, url } = useContext(StoreContext);
   const navigate = useNavigate();
@@ -98,7 +98,7 @@ const Navbar = ({ setShowLogin }) => {
           {/* Authentication & Profile Menu */}
           {!token ? (
             <div className="navbar-auth-buttons">
-              <button className="navbar-login-btn" onClick={() => setShowLogin(true)}>
+              <button className="navbar-login-btn" onClick={() => navigate('/login')}>
                 Sign In
               </button>
               <Link to="/signup" className="navbar-signup-link">

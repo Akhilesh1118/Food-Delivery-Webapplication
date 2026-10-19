@@ -1,6 +1,5 @@
 import React from 'react'
 import './ExploreMenu.css'
-// eslint-disable-next-line no-unused-vars
 import { menu_list } from '../../assets/assets'
 
 const ExploreMenu = ({category, setCategory}) => {

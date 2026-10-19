@@ -31,6 +31,11 @@ function Sidebar() {
                     <span style={{ fontSize: '18px', width: '24px', textAlign: 'center' }}>📈</span>
                     <p>Sales Reports</p>
                 </NavLink>
+
+                <NavLink to="/team" className="sidebar-option">
+                    <span style={{ fontSize: '18px', width: '24px', textAlign: 'center' }} aria-hidden="true">👥</span>
+                    <p>Team &amp; Access</p>
+                </NavLink>
             </div>
         </div>
     )

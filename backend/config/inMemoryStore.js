@@ -45,7 +45,7 @@ class InMemoryStore {
     this.orderSeq = 1000;
     this.orders = [];
 
-    // Seed default admin and staff accounts
+    // Administrator credentials are read only from server environment.
     this.seedUsers();
     // Seed initial POS sample orders
     this.seedOrders();
@@ -53,20 +53,13 @@ class InMemoryStore {
 
   seedUsers() {
     const salt = bcrypt.genSaltSync(10);
-    const adminUser = {
-      _id: "user_admin_001",
-      name: "Restaurant Manager",
-      email: "admin@restaurant.com",
-      password: bcrypt.hashSync("admin123", salt),
-      role: "admin",
-      cartData: {}
-    };
     const staffUser = {
       _id: "user_staff_001",
       name: "Cashier Alex",
       email: "staff@restaurant.com",
       password: bcrypt.hashSync("staff123", salt),
       role: "staff",
+      staffId: "STF-DEMO-0001",
       cartData: {}
     };
     const customerUser = {
@@ -77,8 +70,6 @@ class InMemoryStore {
       role: "customer",
       cartData: {}
     };
-    this.users.set(adminUser.email.toLowerCase(), adminUser);
-    this.usersById.set(adminUser._id, adminUser);
     this.users.set(staffUser.email.toLowerCase(), staffUser);
     this.usersById.set(staffUser._id, staffUser);
     this.users.set(customerUser.email.toLowerCase(), customerUser);

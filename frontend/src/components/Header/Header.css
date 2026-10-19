@@ -1,8 +1,7 @@
 .header{
     height: 34vw;
     margin: 30px auto;
-    background: url('/header_img.png') no-repeat;
-    background-size: contain;
+    background: linear-gradient(90deg, rgba(34, 22, 15, .76) 0%, rgba(34, 22, 15, .46) 38%, rgba(34, 22, 15, .06) 100%), url('/tomato-veg-hero.png') center / cover no-repeat;
     position: relative;
 }
 .header-contents {
@@ -13,18 +12,19 @@
     gap: 1.5vw;
     max-width: 50%;
     bottom: 10px;
-    left: 6vw;   
+    left: 6vw;
     animation: fadeIn 3s;
 }
 .header-contents h2{
     color: white;
     font-weight: 500;
     font-size: max(4.5vw, 22px);
+    text-shadow: 0 2px 16px rgba(0, 0, 0, .28);
 }
- 
 .header-contents p {
     color: white;
-    font-size: 1vw;;
+    font-size: 1vw;
+    text-shadow: 0 1px 10px rgba(0, 0, 0, .45);
 }
 
 .header-contents button {

@@ -59,6 +59,11 @@ app.get('/api/reports/daily-sales', (req, res, next) => {
   orderRouter(req, res, next);
 });
 
+// Keep the legacy admin login URL on the shared employee sign-in screen.
+app.get('/admin/login', (_req, res) => {
+  res.redirect(302, '/employee-portal?role=admin');
+});
+
 // Database connection (non-blocking fallback to in-memory store)
 connectDB().catch((err) => {
   console.warn('[AI Studio] Database warning:', err.message);
@@ -67,7 +72,7 @@ connectDB().catch((err) => {
 // App routing and static/Vite serving
 const adminDist = path.join(__dirname, 'admin', 'dist');
 const frontendDist = path.join(__dirname, 'frontend', 'dist');
-const hasDist = fs.existsSync(adminDist) && fs.existsSync(frontendDist);
+const hasDist = isProduction && fs.existsSync(adminDist) && fs.existsSync(frontendDist);
 
 if (!hasDist) {
   console.log('[AI Studio] Static dist folders not found. Mounting Vite middlewares dynamically...');
@@ -75,6 +80,7 @@ if (!hasDist) {
   const adminVite = await createViteServer({
     root: path.resolve(__dirname, 'admin'),
     base: '/admin/',
+    configLoader: 'runner',
     server: { middlewareMode: true, host: '0.0.0.0', hmr: false, ws: false },
     appType: 'spa',
   });
@@ -107,6 +113,7 @@ if (!hasDist) {
   const frontendVite = await createViteServer({
     root: path.resolve(__dirname, 'frontend'),
     base: '/',
+    configLoader: 'runner',
     server: { middlewareMode: true, host: '0.0.0.0', hmr: false, ws: false },
     appType: 'spa',
   });
@@ -133,6 +140,21 @@ if (!hasDist) {
   });
 }
 
-app.listen(port, '0.0.0.0', () => {
-  console.log(`Food Del server running at http://0.0.0.0:${port}`);
-});
+const listenOnAvailablePort = (candidatePort) => {
+  const server = app.listen(candidatePort, '0.0.0.0', () => {
+    console.log(`Food Del server running at http://localhost:${candidatePort}`);
+  });
+
+  server.once('error', (err) => {
+    if (err.code === 'EADDRINUSE' && candidatePort < 65535) {
+      console.warn(`Port ${candidatePort} is already in use; trying ${candidatePort + 1}...`);
+      listenOnAvailablePort(candidatePort + 1);
+      return;
+    }
+
+    console.error(`Could not start server on port ${candidatePort}:`, err.message);
+    process.exitCode = 1;
+  });
+};
+
+listenOnAvailablePort(Number(port));

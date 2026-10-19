@@ -1,5 +1,32 @@
 import mongoose from "mongoose";
 
+let connectionAttempt = null;
+let lastConnectionFailureAt = 0;
+const connectionFailureCooldownMs = 15000;
+
+export const ensureDBConnected = async () => {
+  if (mongoose.connection.readyState === 1) return true;
+  if (!process.env.MONGODB_URI) return false;
+  if (Date.now() - lastConnectionFailureAt < connectionFailureCooldownMs) return false;
+
+  if (!connectionAttempt) {
+    connectionAttempt = mongoose.connect(process.env.MONGODB_URI, {
+      serverSelectionTimeoutMS: 7000,
+      connectTimeoutMS: 7000,
+    }).then(() => {
+      lastConnectionFailureAt = 0;
+      return true;
+    }).catch((error) => {
+      lastConnectionFailureAt = Date.now();
+      console.warn("[MongoDB] Connection attempt failed:", error.message);
+      return false;
+    }).finally(() => {
+      connectionAttempt = null;
+    });
+  }
+  return connectionAttempt;
+};
+
 export const connectDB = async () => {
   mongoose.set("bufferCommands", false);
 
@@ -12,39 +39,28 @@ export const connectDB = async () => {
   mongoose.connection.on("error", (err) => console.warn("MongoDB connection error:", err.message));
 
   try {
-    await mongoose.connect(process.env.MONGODB_URI, {
-      serverSelectionTimeoutMS: 4000,
-      connectTimeoutMS: 4000,
-    });
+    if (!await ensureDBConnected()) return false;
     
-    // Seed default admin and staff in MongoDB if missing
+    // Seed the existing demo staff account and synchronize order numbering.
     try {
       const userModel = (await import("../models/userModel.js")).default;
       const orderModel = (await import("../models/orderModel.js")).default;
       const bcrypt = (await import("bcryptjs")).default;
       const { inMemoryStore } = await import("./inMemoryStore.js");
 
-      const salt = await bcrypt.genSalt(10);
-      const adminExists = await userModel.findOne({ email: "admin@restaurant.com" });
-      if (!adminExists) {
-        await userModel.create({
-          name: "Restaurant Manager",
-          email: "admin@restaurant.com",
-          password: await bcrypt.hash("admin123", salt),
-          role: "admin"
-        });
-        console.log("[MongoDB] Default admin user initialized in MongoDB");
-      }
-
       const staffExists = await userModel.findOne({ email: "staff@restaurant.com" });
       if (!staffExists) {
         await userModel.create({
           name: "Cashier Alex",
           email: "staff@restaurant.com",
-          password: await bcrypt.hash("staff123", salt),
-          role: "staff"
+          password: await bcrypt.hash("staff123", await bcrypt.genSalt(10)),
+          role: "staff",
+          staffId: "STF-DEMO-0001"
         });
         console.log("[MongoDB] Default staff user initialized in MongoDB");
+      } else if (!staffExists.staffId) {
+        staffExists.staffId = "STF-DEMO-0001";
+        await staffExists.save();
       }
 
       // Sync order sequence with highest existing order number

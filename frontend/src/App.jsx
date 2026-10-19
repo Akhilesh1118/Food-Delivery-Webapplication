@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Navbar from './components/Navbar/Navbar';
 import { Route, Routes, useLocation, Navigate } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import Cart from './pages/Cart/Cart';
 import PlaceOrder from './pages/PlaceOrder/PlaceOrder';
 import Footer from './components/Footer/Footer';
-import LoginPopup from './components/LoginPopup/LoginPopup';
 import Verify from './pages/Verify/Verify';
 import MyOrders from './pages/MyOrders/MyOrders';
 import MenuPage from './pages/MenuPage/MenuPage';
 import CustomerAuthPage from './pages/Auth/CustomerAuthPage';
-import StaffLogin from './pages/Staff/StaffLogin';
+import EmployeePortalLanding from './pages/Auth/EmployeePortalLanding';
 import StaffDashboard from './pages/Staff/StaffDashboard';
 import OrderConfirmation from './pages/OrderConfirmation/OrderConfirmation';
 import { ToastContainer } from 'react-toastify';
@@ -39,21 +38,29 @@ const ProtectedStaffRoute = ({ children }) => {
 };
 
 const App = () => {
-  const [showLogin, setShowLogin] = useState(false);
   const location = useLocation();
   const url = import.meta.env.VITE_API_URL || '';
 
   const isStaffRoute = location.pathname.startsWith('/staff');
+  const isEmployeePortalRoute = location.pathname === '/employee-portal';
+  const isCustomerAuthRoute = location.pathname === '/login' || location.pathname === '/signup';
 
   return (
     <>
       <ToastContainer position="top-right" autoClose={2500} />
-      {showLogin && !isStaffRoute ? <LoginPopup setShowLogin={setShowLogin} /> : null}
-
-      {isStaffRoute ? (
+      {isCustomerAuthRoute ? (
+        <Routes>
+          <Route path="/login" element={<CustomerAuthPage initialMode="login" />} />
+          <Route path="/signup" element={<CustomerAuthPage initialMode="signup" />} />
+        </Routes>
+      ) : isEmployeePortalRoute ? (
+        <Routes>
+          <Route path="/employee-portal" element={<EmployeePortalLanding />} />
+        </Routes>
+      ) : isStaffRoute ? (
         <div className="staff-app-container">
           <Routes>
-            <Route path="/staff/login" element={<StaffLogin url={url} />} />
+            <Route path="/staff/login" element={<Navigate to="/employee-portal?role=staff" replace />} />
             <Route
               path="/staff/dashboard"
               element={
@@ -69,12 +76,10 @@ const App = () => {
       ) : (
         <>
           <div className="app">
-            <Navbar setShowLogin={setShowLogin} />
+            <Navbar />
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/menu" element={<MenuPage />} />
-              <Route path="/login" element={<CustomerAuthPage initialMode="login" />} />
-              <Route path="/signup" element={<CustomerAuthPage initialMode="signup" />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/order" element={<PlaceOrder />} />
               <Route path="/order-confirmation" element={<OrderConfirmation />} />

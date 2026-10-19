@@ -64,7 +64,7 @@ const StaffDashboard = ({ url }) => {
         <div className="staff-nav-user-area">
           <div className="staff-user-chip">
             <span style={{ fontSize: '14px' }}>👨‍🍳</span>
-            <span>{staffUser?.name || 'Staff Member'}</span>
+            <span>{staffUser?.name || 'Staff Member'}{staffUser?.staffId && <small className="staff-user-id">{staffUser.staffId}</small>}</span>
           </div>
 
           <a href="/" className="staff-view-store-link" title="Visit customer website">

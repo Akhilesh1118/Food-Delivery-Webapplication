@@ -88,6 +88,8 @@
   color: #334155;
 }
 
+.staff-user-id { display: block; margin-top: 2px; color: #8b5544; font-size: 9px; font-weight: 700; letter-spacing: .4px; }
+
 .staff-view-store-link {
   font-size: 12px;
   color: #64748b;

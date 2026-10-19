@@ -5,12 +5,23 @@ import FoodItem from '../FoodItem/FoodItem';
 
 const FoodDisplay = ({ category, search = "" }) => {
     const { food_list } = useContext(StoreContext);
+    const seenDishes = new Set();
 
     return (
         <div className="food-display" id='food-display'>
             <h2>Top dishes near you</h2>
             <div className="food-display-list">
                 {food_list.map((item, index) => {
+                    const duplicateKey = [
+                        item.name,
+                        item.category,
+                        item.description,
+                        item.price,
+                        item.image
+                    ].map((value) => String(value ?? '').trim().toLowerCase()).join('|');
+                    if (seenDishes.has(duplicateKey)) return null;
+                    seenDishes.add(duplicateKey);
+
                     const matchesCategory = category === "All" || category === item.category;
                     const matchesSearch = !search || 
                         item.name.toLowerCase().includes(search.toLowerCase()) || 

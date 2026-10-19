@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import './Navbar.css';
 import { assets } from '../../assets/assets';
 
 const Navbar = () => {
   const [adminUser, setAdminUser] = useState(null);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const userStr = localStorage.getItem('admin_user');
@@ -21,7 +19,7 @@ const Navbar = () => {
   const handleLogout = () => {
     localStorage.removeItem('admin_token');
     localStorage.removeItem('admin_user');
-    navigate('/admin/login');
+    window.location.assign('/employee-portal?role=admin');
   };
 
   return (

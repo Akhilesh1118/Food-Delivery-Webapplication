@@ -213,7 +213,7 @@ const PlaceOrder = () => {
               display: {
                 blocks: {
                   upi_collect: {
-                    name: "UPI ID / VPA (Test with success@razorpay)",
+                    name: "UPI ID / VPA",
                     instruments: [
                       {
                         method: "upi",
@@ -610,9 +610,6 @@ const PlaceOrder = () => {
                       ? "Pay via UPI at the pickup counter"
                       : "Pay delivery rider via UPI on arrival"}
                   </p>
-                  <div style={{ marginTop: "6px", fontSize: "11px", color: "#475569", background: "#f1f5f9", padding: "4px 8px", borderRadius: "4px", border: "1px dashed #cbd5e1" }}>
-                    🧪 <strong>Test Mode:</strong> Select <em>UPI ID / VPA</em> in popup and enter <code>success@razorpay</code> or <code>failure@razorpay</code> to test without real money.
-                  </div>
                 </div>
               </label>
             </div>

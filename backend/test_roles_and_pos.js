@@ -1,6 +1,7 @@
+import 'dotenv/config';
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:3000';
+const BASE_URL = `http://localhost:${process.env.PORT || 3000}`;
 
 async function runTests() {
   console.log('--- STARTING TOMATO COMPREHENSIVE INTEGRATION & RBAC TEST SUITE ---');
@@ -45,9 +46,9 @@ async function runTests() {
 
     // 3. Test Admin Login
     console.log('\n[3] Testing Admin Login...');
-    const adminLoginRes = await axios.post(`${BASE_URL}/api/auth/login`, {
-      email: 'admin@restaurant.com',
-      password: 'admin123'
+    const adminLoginRes = await axios.post(`${BASE_URL}/api/auth/admin/login`, {
+      email: process.env.ADMIN_EMAIL,
+      password: process.env.ADMIN_PASSWORD
     });
     assert(adminLoginRes.data.success === true, 'Admin logged in successfully');
     assert(adminLoginRes.data.user.role === 'admin', 'Admin user verified with role "admin"');

@@ -7,6 +7,7 @@ import List from './pages/List/List';
 import Orders from './pages/Orders/Orders';
 import Reports from './pages/Reports/Reports';
 import AdminLogin from './pages/Admin/AdminLogin';
+import TeamAccess from './pages/TeamAccess/TeamAccess';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -59,6 +60,7 @@ const App = () => {
               <Route path="/menu" element={<List url={url} />} />
               <Route path="/add" element={<Add url={url} />} />
               <Route path="/orders" element={<Orders url={url} />} />
+              <Route path="/team" element={<TeamAccess url={url} />} />
               <Route path="/pos" element={<Navigate to="/orders" replace />} />
               <Route path="*" element={<Navigate to="/dashboard" replace />} />
             </Routes>

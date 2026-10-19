@@ -48,12 +48,6 @@ const StaffLogin = ({ url }) => {
     }
   };
 
-  const fillDemoStaff = () => {
-    setEmail('staff@restaurant.com');
-    setPassword('staff123');
-    setErrorMsg('');
-  };
-
   return (
     <div className="staff-login-page">
       <div className="staff-login-card">
@@ -83,7 +77,7 @@ const StaffLogin = ({ url }) => {
             <input
               type="password"
               required
-              placeholder="••••••••"
+              placeholder="Enter your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
@@ -93,13 +87,6 @@ const StaffLogin = ({ url }) => {
             {loading ? 'Authenticating...' : 'Sign In to POS Counter'}
           </button>
         </form>
-
-        <div className="staff-demo-box">
-          <p>Demo Staff Account:</p>
-          <button type="button" onClick={fillDemoStaff} className="staff-fill-demo-btn">
-            Quick Fill: staff@restaurant.com / staff123
-          </button>
-        </div>
 
         <div className="staff-login-footer">
           <a href="/">← Back to Customer Website</a>

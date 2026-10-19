@@ -39,7 +39,8 @@ const EmployeePortalLanding = () => {
       if (isAdmin) {
         localStorage.setItem('admin_token', token);
         localStorage.setItem('admin_user', JSON.stringify(user));
-        window.location.assign('/admin/dashboard');
+        const adminBaseUrl = (url || '').replace(/\/+$/, '');
+        window.location.assign(`${adminBaseUrl}/admin/dashboard`);
       } else {
         localStorage.setItem('staff_token', token);
         localStorage.setItem('staff_user', JSON.stringify(user));

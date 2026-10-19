@@ -1,0 +1,8 @@
+{
+  "name": "Remix Remix Food-Delivery-Webapplication",
+  "description": "Imported from GitHub",
+  "permissions": [],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

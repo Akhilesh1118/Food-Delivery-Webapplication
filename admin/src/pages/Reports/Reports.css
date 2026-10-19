@@ -1,0 +1,347 @@
+.reports-container {
+  padding: 24px 32px;
+  width: 100%;
+  max-width: 1200px;
+  background: #fcfcfc;
+  overflow-y: auto;
+}
+
+.reports-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.reports-header h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 4px 0;
+}
+
+.reports-header p {
+  color: #64748b;
+  font-size: 13px;
+  margin: 0;
+}
+
+.reports-refresh-btn {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.15s;
+}
+
+.reports-refresh-btn:hover {
+  background: #f1f5f9;
+}
+
+/* KPI Cards Grid */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.kpi-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 18px 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.kpi-icon-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.kpi-card.sales .kpi-icon-wrap {
+  background: #ecfdf5;
+  color: #10b981;
+}
+
+.kpi-card.orders .kpi-icon-wrap {
+  background: #eff6ff;
+  color: #3b82f6;
+}
+
+.kpi-card.completed .kpi-icon-wrap {
+  background: #f0fdf4;
+  color: #22c55e;
+}
+
+.kpi-card.active .kpi-icon-wrap {
+  background: #fff7ed;
+  color: #f97316;
+}
+
+.kpi-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.kpi-title {
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.kpi-value {
+  font-size: 24px;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.2;
+}
+
+/* Payment Breakdown Section */
+.payment-section {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 28px;
+}
+
+.payment-section h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 16px 0;
+}
+
+.payment-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.payment-card {
+  border: 1px solid #f1f5f9;
+  background: #f8fafc;
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.payment-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.payment-method-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.payment-count-badge {
+  font-size: 11px;
+  background: #e2e8f0;
+  padding: 2px 8px;
+  border-radius: 12px;
+  color: #475569;
+  font-weight: 600;
+}
+
+.payment-amount {
+  font-size: 20px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+/* Recent Orders Section & Dedicated Search Bar */
+.recent-orders-section {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 22px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+}
+
+.recent-orders-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.recent-orders-top-bar h3 {
+  font-size: 17px;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+}
+
+.recent-search-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.recent-search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 320px;
+}
+
+.recent-search-icon {
+  position: absolute;
+  left: 12px;
+  color: #94a3b8;
+  font-size: 14px;
+  pointer-events: none;
+}
+
+.recent-search-input {
+  width: 100%;
+  padding: 9px 34px 9px 34px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 13px;
+  outline: none;
+  background: #ffffff;
+  transition: all 0.2s;
+}
+
+.recent-search-input:focus {
+  border-color: #ff6347;
+  box-shadow: 0 0 0 3px rgba(255, 99, 71, 0.15);
+}
+
+.recent-search-clear {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 2px 4px;
+}
+
+.recent-search-clear:hover {
+  color: #1e293b;
+}
+
+.recent-status-filter-pills {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.recent-filter-pill {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.recent-filter-pill:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+.recent-filter-pill.active {
+  background: #ff6347;
+  color: #ffffff;
+  border-color: #ff6347;
+}
+
+.recent-results-counter {
+  font-size: 12px;
+  color: #64748b;
+  margin-bottom: 12px;
+}
+
+.reports-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.reports-table th {
+  text-align: left;
+  padding: 10px 12px;
+  background: #f8fafc;
+  color: #64748b;
+  font-weight: 600;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.reports-table td {
+  padding: 12px;
+  border-bottom: 1px solid #f1f5f9;
+  color: #334155;
+}
+
+.badge-status {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.badge-status.pending {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.badge-status.preparing {
+  background: #ffedd5;
+  color: #c2410c;
+}
+
+.badge-status.ready {
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+
+.badge-status.completed {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.badge-status.cancelled {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.highlight-match {
+  background: #fef08a;
+  padding: 1px 3px;
+  border-radius: 3px;
+}
